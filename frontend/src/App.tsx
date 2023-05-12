@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import TodoGallery from "./TodoGallery";
+import './styles/App.css';
+import TodoGallery from "./models/TodoGallery";
 
 function App() {
   return (
