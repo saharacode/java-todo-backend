@@ -47,8 +47,18 @@ function TodoCard(props:CardProps) {
                 <TodoInput setInputName={setDescription}></TodoInput>
                 <button onClick={updateById}>Update</button>
             </div>
-            <button onClick={deleteById}>Delete</button>
-            <button onClick={advanceStatus}>Advance</button>
+            <div>
+                {props.currentTodo.status==="DONE"
+                ? <button onClick={deleteById}>Delete</button>
+                : <></>}
+            </div>
+            <div>
+                {props.currentTodo.status!=="DONE"
+                    ? <button onClick={advanceStatus}>Advance</button>
+                    : <></>}
+            </div>
+
+
 
         </div>
     );
