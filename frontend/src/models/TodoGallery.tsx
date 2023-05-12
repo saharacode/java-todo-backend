@@ -25,6 +25,24 @@ function TodoGallery() {
             .then(getAllTodosFromBackend); // keeping the list with todos updated after newly added todo
     }
 
+    function filterTodosOpen(){
+        return todos.filter((currentTodo:Todo)=>{
+            return currentTodo.status.includes("OPEN");
+        })
+    }
+
+    function filterTodosInProgress(){
+        return todos.filter((currentTodo:Todo)=>{
+            return currentTodo.status.includes("IN_PROGRESS");
+        })
+    }
+
+    function filterTodosDone(){
+        return todos.filter((currentTodo:Todo)=>{
+            return currentTodo.status.includes("DONE");
+        })
+    }
+
 
     return (
         <div>
@@ -32,7 +50,12 @@ function TodoGallery() {
             <TodoInput setInputName = {setInputName}></TodoInput>
             <button onClick={addTodo}>Add</button>
 
-            {todos.map((currentTodo:Todo) => <TodoCard currentTodo={currentTodo} getAllTodosFromBackend={getAllTodosFromBackend}></TodoCard>)}
+            <h2>Open:</h2>
+            {filterTodosOpen().map((currentTodo:Todo) => <TodoCard currentTodo={currentTodo} getAllTodosFromBackend={getAllTodosFromBackend}></TodoCard>)}
+            <h2>In progress:</h2>
+            {filterTodosInProgress().map((currentTodo:Todo) => <TodoCard currentTodo={currentTodo} getAllTodosFromBackend={getAllTodosFromBackend}></TodoCard>)}
+            <h2>Done:</h2>
+            {filterTodosDone().map((currentTodo:Todo) => <TodoCard currentTodo={currentTodo} getAllTodosFromBackend={getAllTodosFromBackend}></TodoCard>)}
         </div>
     );
 }

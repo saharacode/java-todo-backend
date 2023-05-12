@@ -41,7 +41,7 @@ function TodoCard(props:CardProps) {
 
     return (
         <div id="frame" key={props.currentTodo.id}>
-            <h2 >{props.currentTodo.description + " (Status: " + props.currentTodo.status + ")" }</h2>
+            <h2 >{props.currentTodo.description}</h2>
             <div>
                 <p>Change description:</p>
                 <TodoInput setInputName={setDescription}></TodoInput>
