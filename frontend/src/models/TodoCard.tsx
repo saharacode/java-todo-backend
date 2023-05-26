@@ -43,6 +43,7 @@ function TodoCard(props:CardProps) {
         <div id="frame" key={props.currentTodo.id}>
             <h2 >{props.currentTodo.description}</h2>
             <div>
+                <select></select>
                 <p>Change description:</p>
                 <TodoInput setInputName={setDescription}></TodoInput>
                 <button onClick={updateById}>Update</button>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FormEvent, useEffect, useState} from 'react';
 import TodoInput from "./TodoInput";
 import axios from "axios";
 import {Todo} from "./Todo";
@@ -17,7 +17,8 @@ function TodoGallery() {
     }
 
 
-    function addTodo() {
+    function addTodo(event:FormEvent<HTMLFormElement>) {
+        event.preventDefault() // prevent from reloading the page in case of sending a new input-form
         axios.post("/api/todo", {
             description: inputName,
             status: 'OPEN'
@@ -46,9 +47,12 @@ function TodoGallery() {
 
     return (
         <div>
-            <p>Here you can add a new To-Do:</p>
-            <TodoInput setInputName = {setInputName}></TodoInput>
-            <button onClick={addTodo}>Add</button>
+            <form onSubmit={addTodo}>
+                <p>Here you can add a new To-Do:</p>
+                <TodoInput setInputName = {setInputName}></TodoInput>
+                <button>Add</button>
+            </form>
+
 
             <h2>Open:</h2>
             {filterTodosOpen().map((currentTodo:Todo) => <TodoCard currentTodo={currentTodo} getAllTodosFromBackend={getAllTodosFromBackend}></TodoCard>)}
